@@ -98,6 +98,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "Angular13JwtAuth:build:production",
+            "firebaseProject": "task-manager-69",
+            "firebaseHostingSite": "task-manager-iiits"
+          }
         }
       }
     }
