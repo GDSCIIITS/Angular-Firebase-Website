@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 task-btn">
+      <app-custom-button
+        [ngStyle]="{ margin: '1em 0' }"
+        text="{{showCreateTaskForm ? 'Close Form' : 'Add Task'}}"
+        classname="{{showCreateTaskForm ? 'btn btn-danger' : 'btn btn-primary'}}"
+        (btnClick)="toggleAddTask()"
+      ></app-custom-button>
+    </div>
+    <div class="col-md-12">
+      <app-create-task-form
+        (onCreateTask)="onCreate($event)"
+      ></app-create-task-form>
+    </div>
+    <div class="col-md-12">
+      <app-pending-tasks></app-pending-tasks>
+    </div>
+    <div class="col-md-12">
+      <app-done-tasks></app-done-tasks>
+    </div>
+  </div>
+</div>
