@@ -16,6 +16,12 @@ import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { RootComponent } from './dashboard/root/root.component';
+import { CustomButtonComponent } from './dashboard/custom-button/custom-button.component';
+import { PendingTasksComponent } from './dashboard/pending-tasks/pending-tasks.component';
+import { DoneTasksComponent } from './dashboard/done-tasks/done-tasks.component';
+import { TaskCardComponent } from './dashboard/task-card/task-card.component';
+import { CreateTaskFormComponent } from './dashboard/create-task-form/create-task-form.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +30,13 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
     RegisterComponent,
     HomeComponent,
     ProfileComponent,
-    BoardUserComponent
+    BoardUserComponent,
+    RootComponent,
+    CustomButtonComponent,
+    PendingTasksComponent,
+    DoneTasksComponent,
+    TaskCardComponent,
+    CreateTaskFormComponent
   ],
   imports: [
     BrowserModule,
