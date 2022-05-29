@@ -1,36 +1,36 @@
 import { Observable, of } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { TASKS } from 'src/app/mock-tasks';
-import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
 import { Task } from 'src/app/Task';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class TaskService {
-  taskList: AngularFireList;
-  constructor(private firebasedb:AngularFireDatabase) { }
+
+  constructor(private firestore: AngularFirestore) { }
 
   // Write all the CRUD operations here
 
-  getTasks(): Observable<Task[]> {
-    this.taskList = this.firebasedb.list('taskList');
-    return this.taskList;
+  getTasks() {
+    return this.firestore.collection('Task').snapshotChanges();
   }
 
-  createTask(task: string) {
-    this.taskList.push({
-      name: task,
-      isChecked: false
+  createTask(task : {}) {
+    return new Promise<any>((resolve, reject) => {
+      this.firestore
+      .collection('Task')
+      .add(task)
+      .then(res => {}, err => reject(err));
     });
   }
 
-  updateTask(key: string, flag: boolean) {
-    this.taskList.update(key, { isChecked: flag });
+  updateTask(id: string, todo: {}) {
+    return this.firestore.collection('Task').doc(id).set(todo, { merge: true });
   }
   
-  deleteTask(task: string) {
-    this.taskList.remove(task);
+  deleteTask(id: string) {
+    return this.firestore.collection('Task').doc(id).delete();
   }
 }
