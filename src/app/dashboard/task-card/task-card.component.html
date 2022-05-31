@@ -2,7 +2,7 @@
     <div class="card-body">
       <h5 class="card-title">{{ task.title }}</h5>
       <p class="card-text">{{ task.description }}</p>
-      <app-custom-button (click)="onEdit(task)" [ngStyle]="{'margin-right': '1em'}" text="Edit" classname="btn btn-dark"></app-custom-button>
+      <app-custom-button (click)="onEdit(task)" *ngIf="task.status === 'pending'" [ngStyle]="{'margin-right': '1em'}" text="Edit" classname="btn btn-dark"></app-custom-button>
       <app-custom-button (click)="onDone(task)" *ngIf="task.status === 'pending'" [ngStyle]="{'margin-right': '1em'}" text="Mark as Done" classname="btn btn-success"></app-custom-button>
       <app-custom-button (click)="onPending(task)" *ngIf="task.status === 'done'" [ngStyle]="{'margin-right': '1em'}" text="Mark as Pending" classname="btn btn-warning"></app-custom-button>
       <app-custom-button (click)="onDelete(task)" [ngStyle]="{'margin-right': '1em'}" text="Delete" classname="btn btn-danger"></app-custom-button>

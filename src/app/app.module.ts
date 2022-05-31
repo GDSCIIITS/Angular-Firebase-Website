@@ -22,6 +22,8 @@ import { PendingTasksComponent } from './dashboard/pending-tasks/pending-tasks.c
 import { DoneTasksComponent } from './dashboard/done-tasks/done-tasks.component';
 import { TaskCardComponent } from './dashboard/task-card/task-card.component';
 import { CreateTaskFormComponent } from './dashboard/create-task-form/create-task-form.component';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,8 @@ import { CreateTaskFormComponent } from './dashboard/create-task-form/create-tas
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore())

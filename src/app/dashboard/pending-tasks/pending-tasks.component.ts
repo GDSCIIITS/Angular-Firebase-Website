@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Task } from 'src/app/Task';
 import { TaskService } from '../../_services/task.service';
+import { UiService } from '../../_services/ui.service';
 
 @Component({
   selector: 'app-pending-tasks',
@@ -10,24 +11,23 @@ import { TaskService } from '../../_services/task.service';
 export class PendingTasksComponent implements OnInit {
   tasks: Task[] = [];
 
-  constructor(private taskService: TaskService) {}
+  constructor(private taskService: TaskService, private uiService: UiService) {}
 
   ngOnInit(): void {
-    this.taskService.getTasks().subscribe((tasks) => this.tasks = tasks.filter(task => task.status === 'pending'))
+    this.taskService.getTasks().subscribe((tasks) => {
+      this.tasks = tasks.filter(task => task.status === 'pending')
+    })
   }
 
   onEdit(task: Task) {
-    // Use the task service here
-    console.log("I am in edit", task);
+    this.uiService.toggleCreateTaskForm('edit', task)
   }
 
   onDone(task: Task) {
-    // Use the task service here
-    console.log("I am in Done", task);
+    this.taskService.updateTask(task.id!, {...task, status: 'done'})
   }
 
   onDelete(task: Task) {
-    // Use the task service here
-    console.log("I am in delete", task);
+    this.taskService.deleteTask(task.id!)
   }
 }
