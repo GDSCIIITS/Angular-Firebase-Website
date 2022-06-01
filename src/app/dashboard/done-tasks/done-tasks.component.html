@@ -6,7 +6,6 @@
     <app-task-card
       *ngFor="let task of tasks"
       [task]="task"
-      (onEditTask)="onEdit(task)"
       (onPendingTask)="onPending(task)"
       (onDeleteTask)="onDelete(task)"
     ></app-task-card>

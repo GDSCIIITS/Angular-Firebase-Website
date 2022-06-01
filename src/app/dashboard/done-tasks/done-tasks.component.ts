@@ -13,21 +13,16 @@ export class DoneTasksComponent implements OnInit {
   constructor(private taskService: TaskService) {}
 
   ngOnInit(): void {
-    this.taskService.getTasks().subscribe((tasks) => this.tasks = tasks.filter(task => task.status === 'done'))
-  }
-
-  onEdit(task: Task) {
-    // Use the task service here
-    console.log("I am in edit", task);
+    this.taskService.getTasks().subscribe((tasks) => {
+      this.tasks = tasks.filter(task => task.status === 'done')
+    })
   }
 
   onPending(task: Task) {
-    // Use the task service here
-    console.log("I am in Pending", task);
+    this.taskService.updateTask(task.id!, {...task, status: 'pending'})
   }
 
   onDelete(task: Task) {
-    // Use the task service here
-    console.log("I am in delete", task);
+    this.taskService.deleteTask(task.id!)
   }
 }

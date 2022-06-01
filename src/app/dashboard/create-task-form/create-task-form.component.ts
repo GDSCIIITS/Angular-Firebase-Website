@@ -9,15 +9,32 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./create-task-form.component.css']
 })
 export class CreateTaskFormComponent implements OnInit {
+
   @Output() onCreateTask: EventEmitter<Task> = new EventEmitter();
+  @Output() onEditTask: EventEmitter<Task> = new EventEmitter();
+
+  showCreateTaskForm!: boolean;
+  formTitle: string = "New Task Form";
+
+  id!: string;
   title!: string;
   description!: string;
+  type!: string;
   status: string = 'pending';
-  showCreateTaskForm!: boolean;
+
   subscription!: Subscription;
 
   constructor(private uiService: UiService) { 
-    this.subscription = this.uiService.onToggle().subscribe(value => this.showCreateTaskForm = value)
+    this.subscription = this.uiService.onToggle().subscribe(value => {
+      this.formTitle = value.type === 'edit' ? "Edit form" : "New Task Form";
+      this.showCreateTaskForm = value.showCreateTaskForm
+
+      this.id = value.formData.id;
+      this.type = value.type;
+      this.title = value.formData.title;
+      this.description = value.formData.description;
+      this.status = value.formData.status;
+    })
   }
 
   ngOnInit(): void {
@@ -31,14 +48,19 @@ export class CreateTaskFormComponent implements OnInit {
     }
 
     const newTask: Task = {
-      id: Math.floor(Math.random() * 100),
       title: this.title,
       description: this.description,
       status: this.status,
     }
 
-    this.onCreateTask.emit(newTask)
-    this.title = "";
-    this.description = "";
+    if(this.type === 'edit') {
+      this.onEditTask.emit({...newTask, id: this.id})
+    }
+
+    if(this.type == 'create') {
+      this.onCreateTask.emit(newTask)
+    }
+
+    this.uiService.toggleCreateTaskForm('create', {title: '', description: '', status: 'pending'})
   }
 }
