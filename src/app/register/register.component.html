@@ -8,7 +8,7 @@
     <form
       *ngIf="!isSuccessful"
       name="form"
-      (ngSubmit)="f.form.valid && onSubmit()"
+      (ngSubmit)="f.form.valid && authService.SignUp(email.value, password.value)"
       #f="ngForm"
       novalidate
     >

@@ -4,12 +4,13 @@
 
 export const environment = {
   firebase: {
-    projectId: 'task-manager-69',
-    appId: '1:914139404123:web:61c16c5b946c484798ec7e',
-    storageBucket: 'task-manager-69.appspot.com',
-    apiKey: 'AIzaSyDh57IsynjIcjXwcwq_HdHkm286yr-FbTg',
-    authDomain: 'task-manager-69.firebaseapp.com',
-    messagingSenderId: '914139404123',
+    apiKey: "AIzaSyC8PSNT58XtaRQKwqP0Kk732dZPn_LCNIw",
+    authDomain: "task-manager-f046b.firebaseapp.com",
+    projectId: "task-manager-f046b",
+    storageBucket: "task-manager-f046b.appspot.com",
+    messagingSenderId: "263876061060",
+    appId: "1:263876061060:web:6548f6ec47a9fdb84d9fd1",
+    measurementId: "G-6Z4X5NS9XD"
   },
   production: false
 };
