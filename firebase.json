@@ -4,7 +4,7 @@
     "indexes": "firestore.indexes.json"
   },
   "hosting": {
-    "public": "dist/Angular-Firebase-Website",
+    "public": "dist/Angular13JwtAuth",
     "ignore": [
       "firebase.json",
       "**/.*",
