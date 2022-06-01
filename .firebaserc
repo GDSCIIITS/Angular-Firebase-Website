@@ -1,14 +1,5 @@
 {
-  "targets": {
-    "task-manager-69": {
-      "hosting": {
-        "Angular13JwtAuth": [
-          "task-manager-iiits"
-        ]
-      }
-    }
-  },
   "projects": {
-    "default": "task-manager-69"
+    "default": "task-manager-f046b"
   }
 }
