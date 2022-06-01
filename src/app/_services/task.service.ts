@@ -14,8 +14,8 @@ export class TaskService {
   tasks!: Observable<any[]>;
   uid!: string;
 
-  constructor(private firestore: AngularFirestore, private authService: AuthService) {
-    this.uid = this.authService.userData.uid
+  constructor(private firestore: AngularFirestore) {
+    this.uid = JSON.parse(localStorage.getItem('user')!).uid;
     this.tasks = this.firestore.collection('users').doc(this.uid).collection('Tasks').snapshotChanges().pipe(
       map((changes: any) => {
         return changes.map((a: any) => {
